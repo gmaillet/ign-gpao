@@ -18,6 +18,17 @@ router.get('/job', jobs.getJobs, function(req, res) {
     res.render('pages/job', {json:array})
   })
   
+// dependency page
+router.get('/dependency', dependencies.getDependencies, function(req, res) {
+    var array = []
+  
+    for(var i in req.body){
+      array.push(req.body[i])
+    }
+  
+    res.render('pages/dependency', {json:array})
+  })
+
 // chantier page 
 router.get('/chantier', function(req, res) {
     res.render('pages/chantier')

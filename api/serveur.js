@@ -4,6 +4,7 @@ const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const jobs = require("./routes/jobs")
+const dependencies = require("./routes/dependencies")
 
 const PORT = 8080
 
@@ -43,7 +44,7 @@ const options = {
       }
     ]
   },
-  apis: ["model/job.js", "routes/job"]
+  apis: ["model/job.js", "routes/job", "model/dependency.js", "routes/dependency"]
 };
 
 
@@ -57,6 +58,7 @@ app.get(
 );
 
 app.use('/api', jobs);
+app.use('/api', dependencies);
 
 module.exports = app
 

@@ -1,4 +1,5 @@
 const jobs = require('./../middlewares/job')
+const dependencies = require('./../middlewares/dependency')
 const router = require('express').Router()
 
 

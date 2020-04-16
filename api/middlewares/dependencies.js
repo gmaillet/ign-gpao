@@ -9,6 +9,7 @@ const pool = new Pool({
 
 const { matchedData } = require('express-validator/filter');
 
+
 function getAllDependencies(req, res){
 	pool.query("SELECT * FROM dependencies", (error, results) => {
 

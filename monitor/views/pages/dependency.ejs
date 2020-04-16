@@ -1,0 +1,51 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include ("../partials/head") %>
+</head>
+<body class="container">
+
+<header>
+    <%- include ("../partials/header") %>
+</header>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#dependency').DataTable();
+	} );
+</script>
+  
+
+<main>
+    <div class="jumbotron">
+        <h2>Visualisation des dependances</h2>
+	<table class="table table-striped table-bordered" style="width:100%" id="dependency">
+		<thead>
+			<tr>
+				<th>id</th>
+				<th>from_id</th>
+				<th>to_id</th>
+				<th>active</th>
+			</tr>
+		</thead>
+		<% json.forEach(function( dependency){ %>
+		<tr>
+			<td> <%= dependency.id %></td>
+			<td> <%= dependency.from_id %></td>
+			<td> <%= dependency.to_id %></td>
+			<td> <%= dependency.active %></td>
+		</tr>
+		<% }) %>
+ 
+	</table>
+    </div>
+</main>
+
+<footer>
+    <%- include ("../partials/footer") %>
+</footer>
+
+</body>
+</html>

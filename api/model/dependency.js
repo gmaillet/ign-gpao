@@ -17,6 +17,22 @@
  *       responses:
  *         '200':
  *           description: OK
+ *   '/dependency/{idJob}':
+ *     get:
+ *       tags:
+ *         - dependencies
+ *       summary: "Affichage des jobs dont dépend un job choisi"
+ *       description: "Affichage des jobs dont dépend un job choisi"
+ *       parameters:
+ *         - in: path
+ *           name: idJob
+ *           description: l'identifiant du job dont on veut récupérer les jobs dont il dépend
+ *           required: true
+ *           schema:
+ *             type: integer                 
+ *       responses:
+ *         '200':
+ *           description: OK
  *   '/dependency':
  *     put:
  *       tags:

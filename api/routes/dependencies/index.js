@@ -5,6 +5,8 @@ const dependencies = require('./../../middlewares/dependencies')
 
 router.get('/dependencies', dependencies.getAllDependencies)
 
+router.get('/dependencies/:idJob', dependencies.getJobDependencies)
+
 router.put('/dependency', 
     body('from_id').exists(),body('to_id').exists(),
     dependencies.insertDependency)

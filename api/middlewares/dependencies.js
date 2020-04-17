@@ -21,6 +21,22 @@ function getAllDependencies(req, res){
 	})
 }
 
+function getJobDependencies(req, res){
+  var params = matchedData(req);
+
+  const idJob = req.params.id
+  pool.query("SELECT jobs.* FROM jobs,dependencies WHERE jobs.id=dependencies.to_id and jobs.id=$1",
+   [idJob],
+   (error, results) => {
+
+  if (error) {
+    throw error
+  }
+
+  res.status(200).json(results.rows)
+  })
+}
+
 function insertDependency(req, res){	
 	const from_id = req.body.from_id
 	const to_id = req.body.to_id
@@ -39,6 +55,7 @@ function insertDependency(req, res){
 }
 
 module.exports = {
-	getAllDependencies,
-	insertDependency
+  getAllDependencies,
+  getJobDependencies,
+  insertDependency
 }

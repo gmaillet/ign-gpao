@@ -17,7 +17,7 @@
  *       responses:
  *         '200':
  *           description: OK
- *   '/dependency/{idJob}':
+ *   '/dependencies/{idJob}':
  *     get:
  *       tags:
  *         - dependencies

@@ -12,8 +12,8 @@
     }
     
     let onButtonClick = function() {
-        const { dialog } = require('electron').remote;
-        const { window } = require('electron').remote.getCurrentWindow();
+        const { dialog, currentWindow } = require('electron').remote;
+
         let options = {
             //Placeholder 1
         title: "sauvegarder les parametres",
@@ -45,16 +45,22 @@
         }
 
         var fs = require('fs');
-        dialog.showSaveDialog(window, options, (filename) => {
-          jsonParams={};
-          jsonParams['parameters'] = jsonData;
-            try {
-              fs.writeFileSync(filename, JSON.stringify(jsonParams, null, '\t'), 'utf-8');
-            }
-            catch(e) {
-              console.log('cannot save file ', filename);
-            }
+        dialog.showSaveDialog(currentWindow, options).then(result => {
+        if(result.canceled == false) {
+             jsonParams={};
+             jsonParams['parameters'] = jsonData;
+               try {
+                 fs.writeFileSync(result.filePath, JSON.stringify(jsonParams, null, '\t'), 'utf-8');
+               }
+               catch(e) {
+                 console.log('cannot save file ', filename);
+               }
+         }
+        }).catch(err => {
+          console.log(err)
         })
+        
+    
     };
                         
   asyncBtn.addEventListener("click", onButtonClick);

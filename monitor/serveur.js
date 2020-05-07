@@ -14,10 +14,17 @@ module.exports = {
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
+//java scripts visible from html code
+app.use(express.static('electron/renderer-process'));
+
 const routes = require("./routes/")
 
 // use res.render to load up an ejs view file
 app.use('/', routes);
 
-app.listen(PORT);
+var path = require('path');
+var appDir = path.dirname(require.main.filename);
+console.log('server root:', appDir)
 console.log("URL du moniteur : http://"+URL_API+":"+PORT)
+
+app.listen(PORT);

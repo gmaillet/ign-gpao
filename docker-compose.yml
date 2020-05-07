@@ -46,19 +46,6 @@ services:
       - 8000:8000
     networks:
       - gpao-network
-  client-gpao:
-    build:
-      context: ./
-      dockerfile: docker/client/Dockerfile
-    image: client-gpao
-    restart: always
-    environment:
-      - URL_API=api-gpao
-    entrypoint: ["python", "client.py"]
-    depends_on:
-      - api-gpao
-    networks:
-      - gpao-network
 volumes:
   postgres-data:
 networks:

@@ -17,6 +17,7 @@
     "axios": "^0.19.2",
     "debug": "^4.1.1",
     "ejs": "^3.0.1",
+    "ejs-electron-ign-gpao": "^0.1.1",
     "express": "^4.6.1",
     "requests": "^0.3.0"
   },

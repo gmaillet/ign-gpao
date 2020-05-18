@@ -16,7 +16,6 @@ async function open(req, res, next) {
   });
   // Debut de la transaction
   await req.pgPool.query('BEGIN');
-
   next();
 }
 
@@ -30,7 +29,6 @@ async function close(req, res, next) {
     await req.pgPool.query('COMMIT');
   }
   req.pgPool.end();
-
   next();
 }
 

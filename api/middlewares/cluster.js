@@ -1,8 +1,7 @@
 const { matchedData } = require('express-validator/filter');
 
 async function getAllClusters(req, res, next) {
-  await req.pgPool.query('SELECT * FROM cluster')
-    .then((results) => { req.result = results.rows; })
+  const results = await req.pgPool.query('SELECT * FROM cluster')
     .catch((error) => {
       req.error = {
         msg: error.toString(),
@@ -10,6 +9,7 @@ async function getAllClusters(req, res, next) {
         function: 'getAllClusters',
       };
     });
+  req.result = results.rows;
   next();
 }
 
@@ -19,11 +19,10 @@ async function insertCluster(req, res, next) {
 
   const { host } = params;
 
-  await req.pgPool.query(
+  const results = await req.pgPool.query(
     'INSERT INTO cluster (host, id_thread, active, available) VALUES ( $1 , (select count(id) from cluster where host = $2), true, true ) RETURNING id',
     [host, host],
   )
-    .then((results) => { req.result = results.rows; })
     .catch((error) => {
       req.error = {
         msg: error.toString(),
@@ -31,6 +30,7 @@ async function insertCluster(req, res, next) {
         function: 'insertCluster',
       };
     });
+  req.result = results.rows;
   next();
 }
 
